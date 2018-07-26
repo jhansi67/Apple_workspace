@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="com.wipro.srs" />
+	
+	<tx:annotation-driven transaction-manager="hibernateTransactionManager" />
+	
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/messages" />
+	</bean>
+	
+	
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+
+	<bean id="customerImpl" class="com.wipro.srs.service.CustomerImpl"></bean>
+	<bean id="adminService" class="com.wipro.srs.service.AdminServiceImpl"></bean>
+	<bean id="customerDAO" class="com.wipro.srs.dao.CustomerDAOImpl" scope="prototype"></bean>
+	<bean id="user" class="com.wipro.srs.util.UserImpl"></bean>
+	<bean id="authentication" class="com.wipro.srs.util.AuthenticationImpl"></bean>
+	<bean id="payment" class="com.wipro.srs.util.PaymentImpl"></bean>
+	<bean id="AdminDAO" class="com.wipro.srs.dao.AdminDAOImpl" scope="prototype"></bean>
+	
+	
+	<!-- <bean id="contactValidator" class="com.example.validator.ContactValidator"></bean> 
+		<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> 
+		<property name="basename" value="/WEB-INF/messages" /> </bean> -->
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="username" value="wipro" />
+		<property name="password" value="wipro" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.wipro.srs.bean.CredentialsBean</value>
+				<value>com.wipro.srs.bean.PaymentBean</value>
+				<value>com.wipro.srs.bean.CreditCardBean</value>
+				<value>com.wipro.srs.bean.PassengerBean</value>
+				<value>com.wipro.srs.bean.ProfileBean</value>
+				<value>com.wipro.srs.bean.ReservationBean</value>
+				<value>com.wipro.srs.bean.RouteBean</value>
+				<value>com.wipro.srs.bean.ScheduleBean</value>
+				<value>com.wipro.srs.bean.ShipBean</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>

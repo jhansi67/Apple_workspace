@@ -1,0 +1,41 @@
+import java.util.HashMap;
+import java.util.Hashtable;
+
+public class HashTableMap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//addHashTable();
+		addHashMap();
+
+	}
+	
+	public static void addHashTable()
+	{
+		
+		Hashtable ht=new Hashtable();
+		ht.put("a", "Test");
+		ht.put("","Trdt");
+		ht.put(null,"testttt");
+		System.out.println("End Table");
+		
+		
+	}
+	
+	public static void addHashMap()
+	{
+		
+		HashMap ht=new HashMap();
+		ht.put("a", "Test");
+		ht.put("","Trdt");
+		ht.put(null,"testttt");
+		ht.put(null,"testt");
+		System.out.println(ht.get(null));
+		System.out.println("End Table");
+		
+		
+	}
+	
+	
+
+}

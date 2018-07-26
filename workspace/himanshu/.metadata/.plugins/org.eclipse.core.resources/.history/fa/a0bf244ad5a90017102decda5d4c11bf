@@ -1,0 +1,30 @@
+
+public class qq20 {
+
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+     System.out.println(method());
+	}
+	
+	public static int method() 
+	{
+		try{
+			
+			throw new Exception();
+			//return 3;
+			
+		}
+		catch(Exception e)
+		{
+			return 2;
+		}
+		finally
+		{
+			//return 1;
+		}
+		
+	}
+
+}

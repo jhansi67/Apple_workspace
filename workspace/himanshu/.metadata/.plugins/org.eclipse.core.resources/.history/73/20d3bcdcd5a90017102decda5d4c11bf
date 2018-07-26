@@ -1,0 +1,29 @@
+
+
+public class qq21 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      method();
+	}
+	 
+	static void method()
+	{
+		System.out.println("----------");
+		try{
+			throw new ClassNotFoundException();
+		}
+		catch(Exception e)
+		{
+           System.out.println(e);
+			//throw new NullPointerException();
+		}
+		/*finally {
+			return 0;     // 0
+		}*/
+	}
+
+}
+
+
+//Null Pointer Exception

@@ -1,0 +1,16 @@
+package threads;
+
+public class Thread1 {
+	
+	 public void run() {
+	 System.out.print("running");
+	 }
+	 public static void main(String[] args) {
+	 Thread t = new Thread(new Threads1());
+	 t.run();
+	 t.run();
+	 t.start();
+	 }
+ }
+
+}
